@@ -1,0 +1,22 @@
+input {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: $project-background;
+    border: 0.05rem solid $project-border;
+    color: $project-text;
+    padding: 0.75rem 1rem 0.75rem 1rem;
+    font-weight: 400;
+    height: max-content;
+    width: 75%;
+}
+
+.input-small {
+    font-size: medium;
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    width: 15rem;
+}
+
+.checkbox {
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
+}

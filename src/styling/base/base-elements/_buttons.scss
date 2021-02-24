@@ -1,0 +1,42 @@
+﻿.button {
+    background-color: $project-background;
+    border: 0.1rem solid $project-border;
+    border-radius: 0.5rem 0.5rem;
+    color: $project-text;
+    overflow: hidden;
+    padding: 0.4rem 1.25rem 0.4rem 1.25rem;
+    margin: 0.25rem;
+    height:fit-content;
+}
+
+.button:focus { outline: none; }
+
+.button:disabled {
+    background-color: $project-background-disabled;
+}
+
+.button-X {
+    border: 0.25rem solid $project-border;
+    border-radius: 0.5rem 0.5rem;
+    color: $project-text;
+    padding: .1rem .5rem .1rem .5rem;   
+    font-size: small;
+}
+
+.button-Y {
+    background-color: transparent;
+    border: 0.15rem solid rgb(0, 179, 9);
+    border-radius: 0.5rem 0.5rem;
+    color:  rgb(0, 179, 9);
+    height: fit-content;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+}
+
+.button-N {
+    background-color: transparent;
+    border: 0.15rem solid rgb(219, 0, 0);
+    border-radius: 0.5rem 0.5rem;
+    color: rgb(214, 48, 48);
+    height: fit-content;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+}

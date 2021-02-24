@@ -1,0 +1,24 @@
+// Colours
+$project-dropdown-background: rgb(241, 241, 241);
+$project-border: rgb(206, 206, 206);
+$project-background: white;
+$project-dd-background: rgb(236, 236, 236);
+$project-background-disabled: rgb(250, 250, 250);
+$project-text: rgb(0, 0, 0);
+// Font Sizes
+$font-small: 1rem;
+
+@import './base/base';
+@import './base/base-elements/buttons';
+@import './other/error';
+@import './base/base-elements/headers';
+@import './base/base-elements/paragraphs';
+@import './other/tabs';
+@import './base/base-elements/containers';
+@import './base/base-elements/inputs';
+@import './other/perfections';
+@import './base/base-elements/table';
+@import './other/dropdown';
+@import './pages';
+@import './base/base-elements/lists';
+@import './base/base-elements/_widths';
