@@ -1,28 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/esm/Nav';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import { Link } from 'react-router-dom';
 import { IAuthenticatedProps } from '../../../App';
-import { beginSignInProcess } from '../../../functions/authentication_Functions';
-
-const userRole = 'guest'
+import { beginSignInProcess, beginSignOutProcess } from '../../../functions/authentication_Functions';
+import { routesInfo } from '../../../routers/Routers';
 
 const marginRight = {marginRight:'2rem'}
 
 const Appbar = (props:IAuthenticatedProps) => {
+  const [authenticated, setAuthenticated] = useState<boolean>(props.authenticated);
+  let mapKey:number = 0;
+
+  useEffect(() => {
+    setAuthenticated(props.authenticated)
+  },[props.authenticated])
+
     return (
         <Navbar bg="light" className='partition' expand="lg">
           <Navbar.Brand href="/">360 Manager</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-               <Nav.Link as={Link} to={'/'} className="mr-sm-2" >{'Home'}</Nav.Link>
-               <Nav.Link as={Link} to={'/NoticeBoard'} className="mr-sm-2" >{'Notice Board'}</Nav.Link>
+               {routesInfo.map((rt) => {
+                 if(rt.path && rt.label && (!rt.open && authenticated || rt.open)) {
+                   mapKey += 1;
+                  return <Nav.Link key={mapKey} as={Link} to={rt.path} className="mr-sm-2">{rt.label}</Nav.Link>
+                 }
+               })}
             </Nav>
-            {userRole === 'guest' ? 
+            {!authenticated ? 
               <button  className="button" style={marginRight} onClick={beginSignInProcess}>Sign In</button> 
                 : 
-              <button className="button" style={marginRight}>Sign Out</button>
+              <button className="button" style={marginRight} onClick={beginSignOutProcess}>Sign Out</button>
             }
           </Navbar.Collapse>
         </Navbar>

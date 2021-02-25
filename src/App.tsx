@@ -20,7 +20,6 @@ export const App = () => {
 
   return (
     <div>
-      <Appbar authenticated={authenticated}  />
       <Routers authenticated={authenticated} />
     </div>
   );
