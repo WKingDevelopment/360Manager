@@ -4,7 +4,7 @@ import { constants } from "../../../../constants/constants";
 import { PhasesContext } from "../../../../contexts/phases-context";
 import { Phases } from "../../../../data classes/Phases";
 import { arrayComparer } from "../../../../functions/array_Functions";
-import { ArrayMoveProps, SortableList } from "../../../shared components/SortableList";
+import { ArrayMoveProps, SortableList } from "../../../shared components/sortable lists/SortableList";
 
 const PhasesConfigurationForm = () => {
   const { phasesConfig, phasesDispatch } = useContext(PhasesContext);

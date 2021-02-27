@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { IAuthenticatedProps } from '../../../App';
 import { beginSignInProcess, beginSignOutProcess } from '../../../functions/authentication_Functions';
 import { routesInfo } from '../../../routers/Routers';
+import { RouteRestriction } from '../../../routers/Routers';
 
 const marginRight = {marginRight:'2rem'}
 
@@ -23,7 +24,7 @@ const Appbar = (props:IAuthenticatedProps) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
                {routesInfo.map((rt) => {
-                 if(rt.path && rt.label && (!rt.open && authenticated || rt.open)) {
+                 if(rt.path && rt.label && (rt.restriction !== RouteRestriction.open && authenticated || rt.restriction === RouteRestriction.open)) {
                    mapKey += 1;
                   return <Nav.Link key={mapKey} as={Link} to={rt.path} className="mr-sm-2">{rt.label}</Nav.Link>
                  }

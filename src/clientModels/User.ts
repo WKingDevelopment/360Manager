@@ -4,6 +4,6 @@ export class User {
     constructor(
       public displayName: string,
       public email: Email,
-      public associatedCompanies: string[]
+      public associatedTeams: string[]
     ) { }
   }

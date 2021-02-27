@@ -1,3 +1,5 @@
+import { RouteRestriction } from "../routers/Routers";
+
 export class RouteInfo {
-    constructor (public label:string|undefined, public path:string|undefined, public open:boolean, public component: () => JSX.Element) { }
+    constructor (public label:string|undefined, public path:string|undefined, public restriction:RouteRestriction, public component: () => JSX.Element) { }
 }

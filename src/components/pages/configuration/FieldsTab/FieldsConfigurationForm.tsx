@@ -4,7 +4,7 @@ import { Field, fieldArrayRemoveByIndex } from "../../../../data classes/Field";
 import {
   ArrayMoveProps,
   SortableFieldsList,
-} from "../../../shared components/SortableFieldsList";
+} from "../../../shared components/sortable lists/SortableFieldsList";
 
 const FieldsConfigurationForm = (props: IFieldsConfigurationFormProps) => {
   const onRemove = (index: number) => {

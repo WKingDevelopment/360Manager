@@ -1,6 +1,6 @@
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { Field } from "../../data classes/Field";
+import { Field } from "../../../data classes/Field";
 
 const SortableFieldsList = React.memo(
   SortableContainer((props: ISortableListProps) => {

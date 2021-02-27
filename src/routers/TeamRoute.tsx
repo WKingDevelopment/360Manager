@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { Appbar } from '../components/shared components/appbar/Appbar';
 import { ISignedInRouteProps } from './SignedInRoute';
 
-function GotCompanyRoute({ component: Component, ...rest }: IGotCompanyRouteProps) {
+function TeamRoute({ component: Component, ...rest }: ITeamRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
     const [companyId, setCompanyId] = useState<string|undefined>(undefined)
 
     useEffect(() => {
         setAuthenticated(rest.authenticated)
-        setCompanyId(rest.companyId)
+        setCompanyId(rest.teamId)
     },[rest.authenticated])
 
     if (!Component) return null;
@@ -31,15 +31,15 @@ function GotCompanyRoute({ component: Component, ...rest }: IGotCompanyRouteProp
                 />
             );
         } else {
-            return <Redirect to="/CompanySelection" />
+            return <Redirect to="/TeamSelection" />
         }
     } else {
         return <Redirect to="/" />
     }
 }
 
-export interface IGotCompanyRouteProps extends ISignedInRouteProps {
-    companyId:string  
+export interface ITeamRouteProps extends ISignedInRouteProps {
+    teamId:string|undefined
 }
 
-export { GotCompanyRoute }
+export { TeamRoute }
