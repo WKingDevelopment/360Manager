@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context';
 
 const TeamSelectionPage = () => {
     const { user } = useContext(UserContext);
-    console.log(user)
     return (
         <div>
             Team Selection Page

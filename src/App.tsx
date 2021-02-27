@@ -4,7 +4,7 @@ import { firebase } from './firebase/firebase';
 import { Routers } from './routers/Routers';
 import { getUser } from './firebase/CRUD_Functions';
 import { userReducer, userReducerTypes } from './reducers/user-Reducer';
-import { InitialUserType } from './contexts/user-context';
+import { InitialUserType, UserContext } from './contexts/user-context';
 
 export const App = () => {
  const initUser: InitialUserType = { user: undefined };
@@ -35,7 +35,9 @@ export const App = () => {
 
   return (
     <div>
-      <Routers authenticated={email !== undefined} />
+      <UserContext.Provider value={{user,userDispatch}}>
+        <Routers authenticated={email !== undefined} />
+      </UserContext.Provider>
     </div>
   );
 }

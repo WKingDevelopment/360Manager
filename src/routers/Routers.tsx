@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Router, Switch } from 'react-router-dom';
 import { IAuthenticatedProps } from '../App';
 import { RouteInfo } from '../clientModels/RouteInfo';
-import { AboutPage } from '../components/pages/about/AboutPage';
+import { AboutPage } from '../components/pages/AboutPage';
 import { ConfigurationPage } from '../components/pages/ConfigurationPage';
 import { HomePage } from '../components/pages/HomePage';
 import { NoticeBoardPage } from '../components/pages/NoticeBoardPage';

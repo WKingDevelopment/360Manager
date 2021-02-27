@@ -5,8 +5,8 @@ const userReducer = (state:InitialUserType, action:IUserAction): InitialUserType
     switch (action.type) {
         case 'SET_USER':
             return {
-                user:action.user,
-                ...state
+                ...state,
+                user: action.user,
             }
         case 'State':
             return {

@@ -6,8 +6,6 @@ import { ISignedInRouteProps } from './SignedInRoute';
 function PublicRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
 
-    console.log(rest.path)
-
     useEffect(() => {
         setAuthenticated(rest.authenticated)
     },[rest.authenticated])

@@ -6,16 +6,16 @@ import { ISignedInRouteProps } from './SignedInRoute';
 
 function TeamRoute({ component: Component, ...rest }: ITeamRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
-    const [companyId, setCompanyId] = useState<string|undefined>(undefined)
+    const [teamId, setTeamId] = useState<string|undefined>(rest.teamId)
 
     useEffect(() => {
         setAuthenticated(rest.authenticated)
-        setCompanyId(rest.teamId)
+        setTeamId(rest.teamId)
     },[rest.authenticated])
 
     if (!Component) return null;
     if (authenticated) {
-        if (companyId) {
+        if (teamId) {
             return (
                 <Route
                     {...rest}
