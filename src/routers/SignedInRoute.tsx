@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { IAuthenticatedProps } from '../App';
 import { Appbar } from '../components/shared components/appbar/Appbar';
 
-function PrivateRoute({ component: Component, ...rest }: IRouteProps) {
+function SignedInRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
     useEffect(() => {
         setAuthenticated(rest.authenticated)
@@ -32,7 +32,7 @@ function PrivateRoute({ component: Component, ...rest }: IRouteProps) {
     }
 }
 
-export interface IRouteProps extends IAuthenticatedProps,RouteProps {
+export interface ISignedInRouteProps extends IAuthenticatedProps,RouteProps {
 }
 
-export { PrivateRoute }
+export { SignedInRoute }

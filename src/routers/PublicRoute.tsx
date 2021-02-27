@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Route, RouteProps } from 'react-router';
+import { Route } from 'react-router';
 import { Appbar } from '../components/shared components/appbar/Appbar';
-import { IRouteProps } from './PrivateRoute';
+import { ISignedInRouteProps } from './SignedInRoute';
 
-function PublicRoute({ component: Component, ...rest }: IRouteProps) {
+function PublicRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
     useEffect(() => {
         setAuthenticated(rest.authenticated)

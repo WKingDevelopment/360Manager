@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { arrayMove } from "react-sortable-hoc";
 import { constants } from "../../../../constants/constants";
-import { reducerConstants } from "../../../../constants/reducer-Constants";
 import { PhasesContext } from "../../../../contexts/phases-context";
-import { SessionContext } from "../../../../contexts/session-context";
 import { Phases } from "../../../../data classes/Phases";
 import { arrayComparer } from "../../../../functions/array_Functions";
 import { ArrayMoveProps, SortableList } from "../../../shared components/SortableList";
 
 const PhasesConfigurationForm = () => {
-  const { session } = useContext(SessionContext);
   const { phasesConfig, phasesDispatch } = useContext(PhasesContext);
 
   const [newPhaseLabel, setNewPhaseLabel] = useState<string>("");

@@ -7,7 +7,7 @@ import { ConfigurationPage } from '../components/pages/ConfigurationPage';
 import { HomePage } from '../components/pages/HomePage';
 import { NoticeBoardPage } from '../components/pages/NoticeBoardPage';
 import history from '../history/history';
-import { PrivateRoute } from './PrivateRoute';
+import { SignedInRoute } from './SignedInRoute';
 import { PublicRoute } from './PublicRoute';
 
 const Routers = (props: IAuthenticatedProps) => {
@@ -30,9 +30,9 @@ const Routers = (props: IAuthenticatedProps) => {
 const getRoutes = (authenticated: boolean) => {
     const rtn = routesInfo.map((rt,i) => {
         if (!rt.open) {
-            return <PrivateRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+            return <SignedInRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
         } else if (rt.label) {
-            return <PublicRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+            return <SignedInRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
         }
         else {
             return <PublicRoute key={i} authenticated={authenticated} component={rt.component} />

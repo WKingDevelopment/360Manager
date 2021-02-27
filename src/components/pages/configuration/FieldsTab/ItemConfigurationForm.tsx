@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {    Alert } from '../../../../data classes/Alert';
-import { reducerConstants } from '../../../../constants/reducer-Constants';
+import { Alert } from '../../../../data classes/Alert';
 import { FieldsContext } from '../../../../contexts/fields-context';
 import { PhasesContext } from '../../../../contexts/phases-context';
-import { SessionContext } from '../../../../contexts/session-context';
 import { Field } from '../../../../data classes/Field';
-import { Fields } from '../../../../data classes/Fields';
 import { arrayComparer } from '../../../../functions/array_Functions';
 import { isEmptyOrSpace } from '../../../../functions/validations_Functions';
 import { AddNewFieldForm } from './AddNewFieldSubForm';
@@ -13,7 +10,6 @@ import { FieldsConfigurationForm } from './FieldsConfigurationForm';
 
 const ItemConfigurationForm = () => {
     const [saveDisabled, setSaveDisabled] = useState<boolean>(true);
-    const { session } = useContext(SessionContext);
     const { phasesConfig } = useContext(PhasesContext);
     const { fieldsConfig, fieldsDispatch } = useContext(FieldsContext);
     const [mainFields, setMainFields] = useState<Field[]>(fieldsConfig.fields.mainFields)

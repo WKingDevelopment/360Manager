@@ -1,26 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import './styling/styles.scss'
 import { firebase } from './firebase/firebase';
-import { Appbar } from './components/shared components/appbar/Appbar';
 import { Routers } from './routers/Routers';
+import { getUser } from './firebase/CRUD_Functions';
+import { userReducer, userReducerTypes } from './reducers/user-Reducer';
+import { InitialUserType } from './contexts/user-context';
 
 export const App = () => {
- const [authenticated, setAuthenticated] = useState<boolean>(false)
-  useEffect(() => {
-  }, []);
+ const initUser: InitialUserType = { user: undefined };
+ const [user, userDispatch] = useReducer(userReducer, initUser)
+ const [email, setEmail] = useState<string|undefined>(undefined)
+
+ useEffect(() => {
+   if(email) {
+      getUser(email).then((userData) => {
+        if(userData) {
+          userDispatch({user:userData, type: userReducerTypes.set})
+        }
+      })
+   } else {
+    userDispatch({user:undefined, type: userReducerTypes.set})
+   }
+ },[email])
 
   firebase.auth().onAuthStateChanged((user: firebase.User | null) => {
-    if (user) {
-      setAuthenticated(true);
+    if (user && user.email) {
+      console.log('Logged in from firebase')
+      setEmail(user.email);
     } else {
       console.log('Logged out')
-      setAuthenticated(false);
+      setEmail(undefined)
     }
   })
 
   return (
     <div>
-      <Routers authenticated={authenticated} />
+      <Routers authenticated={email !== undefined} />
     </div>
   );
 }
