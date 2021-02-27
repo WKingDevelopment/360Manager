@@ -8,10 +8,8 @@ const userReducer = (state:InitialUserType, action:IUserAction): InitialUserType
                 ...state,
                 user: action.user,
             }
-        case 'State':
-            return {
-                ...state
-            }
+        case 'STATE':
+            console.log(state)
         }
         return state
 }

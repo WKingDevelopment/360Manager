@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import './styling/styles.scss'
 import { firebase } from './firebase/firebase';
 import { Routers } from './routers/Routers';
-import { getUser } from './firebase/CRUD_Functions';
+import { getUser } from './firebase/cRUD_Functions';
 import { userReducer, userReducerTypes } from './reducers/user-Reducer';
 import { InitialUserType, UserContext } from './contexts/user-context';
 

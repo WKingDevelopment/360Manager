@@ -5,10 +5,8 @@ import { Fields } from "../data classes/Fields"
 const fieldsReducer = (state:InitialFieldsType,action:fieldsAction): InitialFieldsType => {
     switch (action.type) {
         case reducerConstants.state:
-            return {
-                ...state
-            }
-        case reducerConstants.setFields:
+            console.log(state)
+        case fieldsReducerTypes.setFields:
             return {
                 ...state,
                 fields: action.fields
@@ -21,4 +19,8 @@ type fieldsAction = {
     fields:Fields,
 }
 
-export { fieldsReducer } 
+const fieldsReducerTypes = {
+    setFields: "SET_FIELDS",
+}
+
+export { fieldsReducer, fieldsReducerTypes} 
