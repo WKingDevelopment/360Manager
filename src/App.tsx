@@ -38,7 +38,7 @@ export const App = () => {
       setEmail(undefined)
     }
   })
-  console.log(user)
+  console.log('authenticated', email !== undefined)
   return (
     <div>
       <UserContext.Provider value={{user,userDispatch}}>

@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
-import { Route, RouteProps } from 'react-router';
+import { Route, RouteProps, useLocation } from 'react-router';
 import { Redirect } from 'react-router-dom';
 import { IAuthenticatedProps } from '../App';
 import { Appbar } from '../components/shared components/appbar/Appbar';
 
 function SignedInRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
+
     useEffect(() => {
         setAuthenticated(rest.authenticated)
     },[rest.authenticated])
@@ -28,9 +29,19 @@ function SignedInRoute({ component: Component, ...rest }: ISignedInRouteProps) {
             />
         );
     } else {
-        return <Redirect to="/" />
+        return <Redirect to={{
+                pathname:'/',
+                state:{ priorPath:rest.path}
+                }}
+            />
     }
 }
+
+export interface LocationState {
+    priorPath: {
+      pathname: string;
+    };
+  }
 
 export interface ISignedInRouteProps extends IAuthenticatedProps,RouteProps {
 }
