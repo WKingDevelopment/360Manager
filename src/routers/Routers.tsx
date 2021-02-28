@@ -32,7 +32,7 @@ const Routers = (props: IAuthenticatedProps) => {
 const getRoutes = (authenticated: boolean) => {
     return routesInfo.map((rt:RouteInfo,i) => {
         if (rt.restriction === RouteRestriction.team) {
-            return <TeamRoute teamId={undefined} key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+            return <TeamRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
         } else if (rt.restriction === RouteRestriction.signedIn)  {
             return <SignedInRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
         } else if (rt.restriction === RouteRestriction.open) {

@@ -7,7 +7,6 @@ const phasesReducer = (state:InitialPhasesType,action:phasesAction): InitialPhas
         case "STATE":
             console.log(state)
         case reducerConstants.setPhases:
-            console.log('phasesReducer',action.phases)
             return {
                 ...state,
                 phases: action.phases
@@ -21,7 +20,7 @@ type phasesAction = {
 }
 
 const phasesReducerTypes = {
-    setPhases: "SET_FIELDS",
+    set: "SET_FIELDS",
 }
 
 export { phasesReducer, phasesReducerTypes } 

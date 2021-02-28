@@ -1,20 +1,31 @@
 import React, { useContext, useEffect } from 'react'
-import { Configuration } from '../../clientModels/Configuration';
 import { FieldsContext } from '../../contexts/fields-context';
 import { PhasesContext } from '../../contexts/phases-context';
 import { UserContext } from '../../contexts/user-context';
-import { getTeamConfig } from '../../firebase/cRUD_Functions';
+import { Phases } from '../../data classes/Phases';
+import { getPhasesConfig } from '../../firebase/cRUD_Functions';
+import history from '../../history/history';
 import { phasesReducerTypes } from '../../reducers/phases-Reducer';
+import { UserReducerTypes } from '../../reducers/user-Reducer';
 
 const TeamSelectionPage = () => {
-    const { user } = useContext(UserContext);
+    const { user, userDispatch } = useContext(UserContext);
     const {phasesConfig, phasesDispatch} = useContext(PhasesContext)
     const {fieldsConfig, fieldsDispatch} = useContext(FieldsContext)
 
-    const onTeamSelected = (teamId:string) => {
-        getTeamConfig(teamId).then((config:Configuration|undefined) => {
-            phasesDispatch({type:phasesReducerTypes.setPhases,action:config?.phases})
+    const onTeamSelected = async (teamId:string) => {
+        let collected = false;
+        await getPhasesConfig(teamId).then((phases:Phases|undefined) => {
+            if(phases) {
+                userDispatch({type:UserReducerTypes.setActiveTeam, activeTeamId:teamId})
+                phasesDispatch({type:phasesReducerTypes.set,action:phases})
+                collected = true;   
+            }
         })
+        // getFieldsConfig
+        if (collected) {
+            history.push('/NoticeBoard')
+        }
     }
 
     return (
