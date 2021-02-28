@@ -5,6 +5,7 @@ import { Routers } from './routers/Routers';
 import { getUser } from './firebase/cRUD_Functions';
 import { userReducer, UserReducerTypes } from './reducers/user-Reducer';
 import { InitialUserType, UserContext } from './contexts/user-context';
+import history from './history/history';
 
 export const App = () => {
  const initUser: InitialUserType = { user: undefined, activeTeamId:undefined };
@@ -17,6 +18,7 @@ export const App = () => {
         if(userData) {
           if(userData.defaultTeamId) {
             userDispatch({user:userData, activeTeamId:userData.defaultTeamId ,type:UserReducerTypes.setUserAndActiveTeam})
+            history.push('/NoticeBoard')
           } else {
             userDispatch({user:userData, activeTeamId:undefined ,type:UserReducerTypes.setUser}) 
           }

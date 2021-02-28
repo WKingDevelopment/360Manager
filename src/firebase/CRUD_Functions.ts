@@ -15,12 +15,15 @@ const getUser = async (email: string): Promise<User | undefined> => {
     })
 }
 
-const getPhasesConfig = async (teamId: string): Promise<Phases | undefined> => {
-    return await db.collection('teams').doc(teamId).collection('configuration').doc('phases').get().then((data) => {
-        if (data.exists) {
-            return data.data() as Phases;
-        }
-    })
+const getPhasesConfig = async (teamId: string|undefined): Promise<Phases | undefined> => {
+    if (teamId) {
+        return await db.collection('teams').doc(teamId).collection('configuration').doc('phases').get().then((data) => {
+            if (data.exists) {
+                return data.data() as Phases;
+            }
+        }) 
+    }
+    return undefined
 }
 
 export { getUser, getPhasesConfig }
