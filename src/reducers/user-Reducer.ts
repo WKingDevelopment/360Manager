@@ -3,23 +3,50 @@ import { InitialUserType } from "../contexts/user-context"
 
 const userReducer = (state:InitialUserType, action:IUserAction): InitialUserType => {
     switch (action.type) {
-        case 'SET_USER':
+        case UserReducerTypes.setUser:
             return {
                 ...state,
                 user: action.user,
             }
-        case 'STATE':
+        case UserReducerTypes.clearUser:
+            return {
+                ...state,
+                user: undefined,
+            }
+        case UserReducerTypes.setActiveTeam:
+            return {
+                ...state,
+                activeTeamId: action.activeTeamId,
+            }
+        case UserReducerTypes.clearActiveTeam:
+            return {
+                ...state,
+                activeTeamId: undefined,
+            }
+        case UserReducerTypes.setUserAndActiveTeam:
+            return {
+                ...state,
+                user: action.user,
+                activeTeamId: action.activeTeamId,
+            }
+        case UserReducerTypes.state:
             console.log(state)
         }
         return state
 }
 type IUserAction = {
-    type: string,
-    user: User | undefined
+    type: UserReducerTypes,
+    user: User | undefined,
+    activeTeamId: string | undefined
 }
 
-const userReducerTypes = {
-    set:"SET_USER"
-}
+enum UserReducerTypes {
+    setUser,
+    clearUser,
+    setActiveTeam,
+    clearActiveTeam,
+    state,
+    setUserAndActiveTeam
+  }
 
-export { userReducer, userReducerTypes } 
+export { userReducer, UserReducerTypes } 

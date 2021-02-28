@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route } from 'react-router';
 import { Redirect } from 'react-router-dom';
 import { Appbar } from '../components/shared components/appbar/Appbar';
+import { UserContext } from '../contexts/user-context';
 import { ISignedInRouteProps } from './SignedInRoute';
 
-function TeamRoute({ component: Component, ...rest }: ITeamRouteProps) {
+function TeamRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
-    const [teamId, setTeamId] = useState<string|undefined>(rest.teamId)
-
+    const { user, userDispatch } = useContext(UserContext);
     useEffect(() => {
         setAuthenticated(rest.authenticated)
-        setTeamId(rest.teamId)
     },[rest.authenticated])
 
     if (!Component) return null;
     if (authenticated) {
-        if (teamId) {
+        if (user.activeTeamId) {
             return (
                 <Route
                     {...rest}
@@ -36,10 +35,6 @@ function TeamRoute({ component: Component, ...rest }: ITeamRouteProps) {
     } else {
         return <Redirect to="/" />
     }
-}
-
-export interface ITeamRouteProps extends ISignedInRouteProps {
-    teamId:string|undefined
 }
 
 export { TeamRoute }
