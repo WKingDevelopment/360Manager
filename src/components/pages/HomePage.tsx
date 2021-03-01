@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 const HomePage = () => {
-    return (
-        <p>Welcome to 360 Manager!</p>
-    )
-}
+  return (
+    <div>
+      <div className="page">
+      </div>
+    </div>
+  );
+};
 
-export { HomePage }
+export { HomePage };

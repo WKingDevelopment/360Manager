@@ -34,7 +34,7 @@ function TeamRoute({ component: Component, ...rest }: ISignedInRouteProps) {
                     render={(props) => {
                         return (
                             <div>
-                                <Appbar authenticated={authenticated}  />
+                                <Appbar activePage={rest.pageTitle} authenticated={authenticated}  />
                                 <Component {...props} />
                             </div>
                         )

@@ -6,7 +6,7 @@ import { ISignedInRouteProps, LocationState } from './SignedInRoute';
 function PublicRoute({ component: Component, ...rest }: ISignedInRouteProps) {
     const [authenticated, setAuthenticated] = useState<boolean>(rest.authenticated)
     const location = useLocation<LocationState>();
-    const { priorPath } = location.state;
+    const { priorPath } = location.state || {priorPath:undefined};
     
     useEffect(() => {
         setAuthenticated(rest.authenticated)
@@ -23,7 +23,7 @@ function PublicRoute({ component: Component, ...rest }: ISignedInRouteProps) {
             render={(props) => {
                 return (
                     <div>
-                        <Appbar authenticated={authenticated}  />
+                        <Appbar activePage={rest.pageTitle} authenticated={authenticated}  />
                         <Component {...props}/>
                     </div>
                 )

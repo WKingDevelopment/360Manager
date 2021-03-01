@@ -9,7 +9,7 @@ import { RouteRestriction } from '../../../routers/Routers';
 
 const marginRight = {marginRight:'2rem'}
 
-const Appbar = (props:IAuthenticatedProps) => {
+const Appbar = (props:IAppbarProps) => {
   const [authenticated, setAuthenticated] = useState<boolean>(props.authenticated);
   let mapKey:number = 0;
 
@@ -18,7 +18,7 @@ const Appbar = (props:IAuthenticatedProps) => {
   },[props.authenticated])
 
     return (
-        <Navbar bg="light" className='partition' expand="lg">
+        <Navbar bg="light" className='partition navbar fixed-top' expand="lg">
           <Navbar.Brand href="/">360 Manager</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -26,7 +26,7 @@ const Appbar = (props:IAuthenticatedProps) => {
                {routesInfo.map((rt) => {
                  if(rt.path && rt.label && (rt.restriction !== RouteRestriction.open && authenticated || rt.restriction === RouteRestriction.open)) {
                    mapKey += 1;
-                  return <Nav.Link key={mapKey} as={Link} to={rt.path} className="mr-sm-2">{rt.label}</Nav.Link>
+                  return <Nav.Link key={mapKey} as={Link} to={rt.path} className={props.activePage === rt.label? "mr-sm-2 partition" : "mr-sm-2"}>{rt.label}</Nav.Link>
                  }
                })}
             </Nav>
@@ -38,6 +38,10 @@ const Appbar = (props:IAuthenticatedProps) => {
           </Navbar.Collapse>
         </Navbar>
       );
+}
+
+interface IAppbarProps extends IAuthenticatedProps {
+  activePage:string
 }
 
 export { Appbar }

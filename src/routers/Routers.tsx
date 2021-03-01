@@ -31,15 +31,15 @@ const Routers = (props: IAuthenticatedProps) => {
 
 const getRoutes = (authenticated: boolean) => {
     return routesInfo.map((rt:RouteInfo,i) => {
-        if (rt.restriction === RouteRestriction.team) {
-            return <TeamRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
-        } else if (rt.restriction === RouteRestriction.signedIn)  {
-            return <SignedInRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+        if (rt.restriction === RouteRestriction.team && rt.label) {
+            return <TeamRoute pageTitle={rt.label} key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+        } else if (rt.restriction === RouteRestriction.signedIn && rt.label)  {
+                return <SignedInRoute pageTitle={rt.label} key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
         } else if (rt.restriction === RouteRestriction.open) {
             if (rt.label) {
-                return <PublicRoute key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
+                return <PublicRoute pageTitle={rt.label} key={i} authenticated={authenticated} exact path={rt.path} component={rt.component} />
             } else {
-                return <PublicRoute key={i} authenticated={authenticated} component={rt.component} />
+                return <PublicRoute pageTitle={''} key={i} authenticated={authenticated} component={rt.component} />
             }
         }
     });

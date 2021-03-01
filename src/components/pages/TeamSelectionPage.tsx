@@ -30,7 +30,7 @@ const TeamSelectionPage = () => {
 
     return (
         <div>
-            Team Selection Page
+            <div className='page'>
             {(user.user?.associatedTeams && user.user?.associatedTeams.length > 0) ? user.user?.associatedTeams.map((team,i) => {
                 return (
                 <div key={i} onClick={() => {onTeamSelected(team)}}>
@@ -40,6 +40,7 @@ const TeamSelectionPage = () => {
             <p>
                 You are not a member of any teams. Contact your team admin to add you to the team.
             </p>}
+            </div>
         </div>
     )
 }

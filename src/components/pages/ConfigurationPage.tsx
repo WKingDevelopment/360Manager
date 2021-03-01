@@ -1,12 +1,14 @@
-import React from 'react';
-import { ConfigurationTabs } from './configuration/ConfigurationTabs';
+import React from "react";
+import { ConfigurationTabs } from "./configuration/ConfigurationTabs";
 
 const ConfigurationPage = () => {
-    return (
-        <div className="page mrgn-btm">
-            <ConfigurationTabs/>
-        </div>
-        )
-}
+  return (
+    <div>
+      <div className="page">
+        <ConfigurationTabs />
+      </div>
+    </div>
+  );
+};
 
-export { ConfigurationPage }
+export { ConfigurationPage };

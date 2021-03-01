@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 const NoticeBoardPage = () => {
     return (
         <div>
-            Life Cycle Page
-            <Link to="/Configuration">Configuration</Link>
+            <div className='page'>
+                Insert code here
+            </div>
         </div>
     )
 }

@@ -20,7 +20,7 @@ function SignedInRoute({ component: Component, ...rest }: ISignedInRouteProps) {
                 render={(props) => {
                     return (
                         <div>
-                            <Appbar authenticated={authenticated}  />
+                            <Appbar activePage={rest.pageTitle} authenticated={authenticated}  />
                             <Component {...props} />
                         </div>
                     )
@@ -44,6 +44,7 @@ export interface LocationState {
   }
 
 export interface ISignedInRouteProps extends IAuthenticatedProps,RouteProps {
+    pageTitle:string
 }
 
 export { SignedInRoute }
