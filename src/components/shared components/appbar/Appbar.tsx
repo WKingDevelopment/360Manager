@@ -26,7 +26,7 @@ const Appbar = (props:IAppbarProps) => {
                {routesInfo.map((rt) => {
                  if(rt.path && rt.label && (rt.restriction !== RouteRestriction.open && authenticated || rt.restriction === RouteRestriction.open)) {
                    mapKey += 1;
-                  return <Nav.Link key={mapKey} as={Link} to={rt.path} className={props.activePage === rt.label? "mr-sm-2 partition" : "mr-sm-2"}>{rt.label}</Nav.Link>
+                  return <Nav.Link key={mapKey} as={Link} to={rt.path} className={props.activePage === rt.label? "mr-sm-2 partition bold" : "mr-sm-2"}>{rt.label}</Nav.Link>
                  }
                })}
             </Nav>
