@@ -6,10 +6,15 @@ import { getUser } from './firebase/cRUD_Functions';
 import { userReducer, UserReducerTypes } from './reducers/user-Reducer';
 import { InitialUserType, UserContext } from './contexts/user-context';
 import history from './history/history';
+import { PhasesContext, InitialPhasesType } from './contexts/phases-context';
+import { Phases } from './data classes/Phases';
+import { phasesReducer } from './reducers/phases-Reducer';
 
 export const App = () => {
  const initUser: InitialUserType = { user: undefined, activeTeamId:undefined };
- const [user, userDispatch] = useReducer(userReducer, initUser)
+ const initPhases: InitialPhasesType = { phases:new Phases() };
+ const [user, userDispatch] = useReducer(userReducer, initUser);
+ const [phasesConfig, phasesDispatch] = useReducer(phasesReducer, initPhases)
  const [email, setEmail] = useState<string|undefined>(undefined)
 
  useEffect(() => {
@@ -41,9 +46,11 @@ export const App = () => {
   console.log('authenticated', email !== undefined)
   return (
     <div>
+      <PhasesContext.Provider value={{phasesConfig, phasesDispatch}}>
       <UserContext.Provider value={{user,userDispatch}}>
         <Routers authenticated={email !== undefined} />
       </UserContext.Provider>
+      </PhasesContext.Provider>
     </div>
   );
 }

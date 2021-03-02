@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { arrayMove } from "react-sortable-hoc";
 import { constants } from "../../../../constants/constants";
 import { PhasesContext } from "../../../../contexts/phases-context";
+import { UserContext } from "../../../../contexts/user-context";
 import { Phases } from "../../../../data classes/Phases";
+import { setPhasesConfig } from "../../../../firebase/cRUD_Functions";
 import { arrayComparer } from "../../../../functions/array_Functions";
+import { phasesReducerTypes } from "../../../../reducers/phases-Reducer";
 import { ArrayMoveProps, SortableList } from "../../../shared components/sortable lists/SortableList";
 
 const PhasesConfigurationForm = () => {
   const { phasesConfig, phasesDispatch } = useContext(PhasesContext);
-
+  const { user } = useContext(UserContext);
   const [newPhaseLabel, setNewPhaseLabel] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [phases, setPhases] = useState<Phases>(phasesConfig.phases);
@@ -43,6 +46,14 @@ const PhasesConfigurationForm = () => {
   };
 
   const onSave = () => {
+    if(user.activeTeamId) {
+      setPhasesConfig(user.activeTeamId,phases).then((res) => {
+        if (res) {
+          console.log('savePhasesWorked')
+          phasesDispatch({type:phasesReducerTypes.set,phasesConfig:phases})
+        }
+      })
+    }
   };
 
   const addNewPhase = () => {

@@ -26,4 +26,16 @@ const getPhasesConfig = async (teamId: string|undefined): Promise<Phases | undef
     return undefined
 }
 
-export { getUser, getPhasesConfig }
+const setPhasesConfig = async (teamId: string, phases:Phases): Promise<boolean> => {
+    if (teamId && phases) {
+        await db.collection('teams').doc(teamId).collection('configuration').doc('phases').set({phaseList:phases.phaseList}).then((mes) => {
+            return true;
+        }).catch((err) => {
+            return false;
+        })
+        return true;
+    }
+    return false;
+}
+
+export { getUser, getPhasesConfig, setPhasesConfig }
